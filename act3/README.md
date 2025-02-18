@@ -1,4 +1,4 @@
-# **README - Actividad 3: Análisis Estático de Malware**
+# **README - Actividad 3: Análisis Estático y Dinámico de Malware**
 
 ## **Introducción**
 En esta actividad, se realizó un análisis estático para determinar si ciertos archivos contenían malware. **Ninguno de estos archivos debe ejecutarse**, ya que se ha confirmado que contienen código malicioso. El propósito de este ejercicio es únicamente el análisis.
