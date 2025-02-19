@@ -27,6 +27,20 @@ Para más detalles, consulte el notebook **actividad3_f1.ipynb**, donde se compa
 
 ---
 
+## **6. Evaluación Final: ¿Son Maliciosos los Ejecutables?**
+
+Basado en los resultados obtenidos en el análisis estático y dinámico, se concluye que ambos ejecutables presentan características típicas de malware, como:
+
+- Presencia de **DLLs sospechosas**. Como se detalla en el doc, hay similitudes entre los elementos de la tabla 3 del articulo, indicando que tienen algunos
+  DLLs que son caracteristicos de un malware
+- Comportamientos anómalos detectados en **Hybrid Analysis**. Ambos documentos, tanto el .exe, como el desempaquetado, presentaron riesgo de malwara. Revisar
+  los enlaces adjuntos con los resultados para mayor detalle. Pero si se demostro que ambos, al menos para windows 11, fue presentado como malicioso
+- Técnicas de **empaquetado** que dificultan su análisis y ocultan su verdadera funcionalidad. Este es un inidicio no confirmado, pero que puede tomarse como base
+  para sospechar del doc
+
+Por lo tanto, **se considera que los ejecutables son maliciosos** y no deben ejecutarse en entornos no controlados.
+
+
 ## **Conclusión**
 El análisis estático permitió identificar diferencias clave entre los archivos empaquetados y desempaquetados. Se recomienda utilizar herramientas avanzadas para inspeccionar **DLLs** y otras características que pueden indicar la presencia de malware.
 
