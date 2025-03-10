@@ -7,4 +7,4 @@ act3.zip
 lab4/*.env
 
 
-lab4/.ipynb_checkpoints
+lab4/.ipynb_checkpoints/*
