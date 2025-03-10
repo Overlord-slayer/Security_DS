@@ -8,5 +8,6 @@ lab4/*.env
 
 
 lab4/.ipynb_checkpoints/*
-lab4/MALWR_lab4.zip
+lab4/*.zip
 lab4/MALWR_lab4/
+
