@@ -21,3 +21,15 @@ Al final, segun en el conjunto de datos que se genero, se determinaron 9. Algo q
 - Sin embargo, puede haber diferencias en DBSCAN debido a su tratamiento de ruido y outliers, lo que puede hacer que algunos ejemplares sean clasificados de manera diferente.
 
 En conclusión, K-Means y DBSCAN muestran agrupaciones similares, aunque DBSCAN puede ser más sensible a la estructura de los datos. El análisis de similitud también refuerza la existencia de múltiples familias, con una fuerte coincidencia entre los métodos. 
+# UMBRAL DE 3
+![Umbral de 3](image.png)
+
+# UMBRAL DE 6
+![Umbral de 6](image-1.png)
+
+# UMBRAL DE 9
+![Umbral de 9](image-2.png)
+
+Se observo que entre mas grande el umbral, mayor cercanica tenian los elementos. En este caso, para String se nota mucho antes, pues estan mas dispersos
+los valores. Aun asi, el de funciones da a entneder que los elementos tiene valores muy similares, y entre menor unbral, se hace mas especifico para cada
+uno de los casos.
