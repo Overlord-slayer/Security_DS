@@ -77,13 +77,13 @@ El uso de **K-Means** permite definir un número específico de familias, mientr
 
 En conclusión, K-Means y DBSCAN muestran agrupaciones similares, aunque DBSCAN puede ser más sensible a la estructura de los datos. El análisis de similitud también refuerza la existencia de múltiples familias, con una fuerte coincidencia entre los métodos. 
 
-# UMBRAL DE 3
+# UMBRAL DE 0.3
 ![Umbral de 3](image.png)
 
-# UMBRAL DE 6
+# UMBRAL DE 0.6
 ![Umbral de 6](image-1.png)
 
-# UMBRAL DE 9
+# UMBRAL DE 0.9
 ![Umbral de 9](image-2.png)
 
 Se observo que entre mas grande el umbral, mayor cercanica tenian los elementos. En este caso, para String se nota mucho antes, pues estan mas dispersos
