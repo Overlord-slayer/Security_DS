@@ -13,3 +13,6 @@ lab4/*.zip
 lab4/MALWR_lab4/
 
 anomaly_detection/*.env
+
+lab5/large_eve.json
+lab5/top-1m.csv
