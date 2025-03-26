@@ -16,3 +16,10 @@ anomaly_detection/*.env
 
 lab5/large_eve.json
 lab5/top-1m.csv
+lab5/*.env
+lab5/large_even.json
+lab2/D1/.ipynb_checkpoints/
+lab2/D2/.ipynb_checkpoints/
+lab2/D3/.ipynb_checkpoints/
+lab5/.ipynb_checkpoints/
+
