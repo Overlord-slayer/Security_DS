@@ -1,7 +1,11 @@
+'''
+    Prologo del lab.
+'''
+
 import scapy.all as scapy
 
 # a. Capturar 25 paquetes de la red doméstica
-packets_live = scapy.sniff(count=25, iface="wlp0s20f3")  # Cambiar "wlp0s20f3" por el nombre de tu interfaz de red
+packets_live = scapy.sniff(count=25, iface="wlp0s20f3")
 
 # b. Imprimir el tipo de variable, la longitud y el contenido de la variable
 print("Tipo de variable:", type(packets_live))

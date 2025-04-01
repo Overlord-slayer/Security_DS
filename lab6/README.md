@@ -1,3 +1,9 @@
+# PROLOGO
+Para esta parte, esta test.py y capture.py. Ambos archivos son como para ver el funcionamiento del mismo. La diferencia entre uno y otro
+es que test.py hace la captura en tiempo real, como un wireshark. Mientras que capture.py lo hace en terminos de validar que se haga lo que
+se espera de la libreria. Para poder ejecutarlo, se toma en consideracion el tema de hacerlo mediante root, pues requiere permisos de admin
+para poder obtener la data.
+
 # PARTE 1 y 2 Análisis de Tráfico de Red
 
 ## **Análisis del tráfico**
