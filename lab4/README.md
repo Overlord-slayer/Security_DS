@@ -107,8 +107,3 @@ uno de los casos.
 - Finalmente, en el conjunto de datos analizado, se ha determinado una clasificación en **4 familias**, lo que representa una agrupación más manejable e interpretable.
 - No obstante, se reconoce la posibilidad de que el **desempaquetado de los archivos PE no se haya realizado de manera óptima**, lo que podría haber afectado la detección precisa de ciertas características distintivas de cada muestra de malware. Algo a destacar, es que en el caso de haberlo realizado, se opto por el resultado del metodo del codo, esto con el fin de mantener en
 una misma familia aquellos que, a pesar de tener sus pequeñas diferencias.
-
-### ¿En qué medida coincide el análisis de similitud con los clusters encontrados?
-- El análisis de similitud basado en **llamadas a funciones API y strings** muestra agrupaciones bien definidas que coinciden en gran medida con los clusters obtenidos por **K-Means**.
-- Sin embargo, **DBSCAN** presenta diferencias debido a su capacidad para identificar ruido y su sensibilidad a la densidad de los datos.
-
