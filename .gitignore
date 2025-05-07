@@ -1,33 +1,30 @@
-lab2/none.js
-lab1/*.env
-lab2/*.env
-env
-act3.zip
+# Ignorar checkpoints y notebooks temporales
+**/.ipynb_checkpoints/
+*.ipynb_checkpoints/
 
-lab3/*.env
-lab4/*.env
+# Ignorar archivos comprimidos
+*.zip
+*.zip.part
 
+# Ignorar entornos virtuales y archivos de configuración
+*.env
 
-lab4/.ipynb_checkpoints/*
-lab4/*.zip
+# Ignorar datasets grandes o temporales
 lab4/MALWR_lab4/
-
-anomaly_detection/*.env
-
 lab5/large_eve.json
-lab5/top-1m.csv
-lab5/*.env
 lab5/large_even.json
-lab2/D1/.ipynb_checkpoints/
-lab2/D2/.ipynb_checkpoints/
-lab2/D3/.ipynb_checkpoints/
-lab5/.ipynb_checkpoints/
-
-proyecto/.ipynb_checkpoints/
+lab5/top-1m.csv
 proyecto/feature_engineering_work
-
-lab8/malimg_dataset.zip
 lab8/malimg_dataset
+lab8/malimg_dataset.zip
 lab8/malimg_dataset.E1N-_ZLC.zip.part
-lab8/.ipynb_checkpoints/lab8-checkpoint.ipynb
+
+
+lab2/none.js
+env
+
+
+lab9/malimg_dataset.zip
+lab9/malimg_dataset
+lab9/malimg_dataset.E1N-_ZLC.zip.part
 
