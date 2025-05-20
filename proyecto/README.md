@@ -1,95 +1,102 @@
-# Proyecto Final: Reducción de Falsos Positivos en Perfiles Complejos
+## Proyecto: Modelo de Detección de Fraude con Perfiles Complejos
 
-## Objetivo Específico
-Reducir falsos positivos en perfiles con transacciones complejas y evitar alertas innecesarias en clientes legítimos pero no convencionales.
-
----
-
-## 1. Exploración de Datos (EDA)
-
-- Se verificó un fuerte desbalance de clases (~0.5% de fraudes).
-- Se visualizó la distribución de fraudes por hora, día, categoría y comercio.
-- Se aplicó PCA para observar que los perfiles complejos legítimos y los fraudes se superponen, justificando un enfoque personalizado.
-
-### Transacciones Complejas Legítimas:
-```
-Transacciones complejas legítimas: 131,147  
-Tasa de fraude en perfiles complejos: 0.006986
-```
+Este proyecto desarrolla un modelo de clasificación binaria para detección de fraudes financieros utilizando LightGBM, con énfasis en **reducir los falsos positivos** en perfiles de usuarios con comportamiento complejo pero legítimo.
 
 ---
 
-## 2. Ingeniería de Características
+## Objetivo General
 
-- Se creó `is_complex_profile` con lógica basada en comportamiento no convencional:
-```python
-(df['amt_year'] > 5000) &
-(df['times_shopped_at_merchant_year'] > 10) &
-(df['count_month_shopping_net'] > 5)
-```
-- Esta variable se usó para ponderar el entrenamiento y ajustar el umbral de predicción.
+* Detectar transacciones fraudulentas.
+* Minimizar falsos positivos en transacciones legítimas, especialmente en clientes con comportamiento inusual.
 
 ---
 
-## 3. Modelo Base y Balanceo
+## Principales Contribuciones
 
-- Clasificador utilizado: **LightGBM**.
-- Balanceo implementado con cálculo dinámico controlado:
-```python
-compute_scale_pos_weight(y_train, cap=300)
-# Resultado: scale_pos_weight calculado: 177.59 → usado: 177.59
-```
+1. **Reglas híbridas de perfil complejo** combinando percentiles poblacionales y z-scores personalizados por cliente.
+2. **Heurística de dispersión** para detectar variabilidad inusual en comportamiento de gasto y horarios.
+3. **Ajustes personalizados en el modelo**:
 
----
-
-## 4. Métricas de Evaluación Personalizadas (`feval`)
-
-### 1. `penalty_fp_complex`
-- Penaliza falsos positivos en perfiles complejos.
-
-### 2. `f1_fp_penalty`
-- Penaliza el F1 score si hay muchos FP en complejos (**la más estable**).
-
-### 3. `precision_boosted`
-- Ajusta la precisión penalizando directamente FP en perfiles complejos.
+   * Pesos diferenciados en el entrenamiento.
+   * Umbrales personalizados en predicción.
+   * Métricas de evaluación que penalizan más los falsos positivos complejos.
 
 ---
 
-## 5. Umbral Personalizado
+## Variables Clave
 
-```python
-def custom_threshold(preds_proba, is_complex, threshold_simple=0.5, threshold_complex=0.7):
-```
-- Se aplicó un umbral más alto a perfiles complejos para reducir alertas injustificadas.
+### a. **Regla de Negocio Híbrida**
 
----
+Detecta clientes que:
 
-## 6. Resultados Obtenidos
+* Gastan mucho comparado con el resto (percentil 90).
+* O muestran cambios extremos en su gasto anual (z-score > 2).
 
-```text
-Falsos positivos totales: 88
-Falsos positivos en perfiles complejos: 21
-Proporción de FP complejos: 23.86%
-```
+Combinado con:
 
-### Comparativa entre Métricas:
+* Alta frecuencia con el mismo comercio.
+* Múltiples compras online.
 
-| Métrica                | Precisión (fraude) | Recall | F1 Score | Penalización personalizada |
-|------------------------|--------------------|--------|----------|-----------------------------|
-| `penalty_fp_complex`  | 0.1580             | 0.8666 | 0.2665   | 0.1508                      |
-| `f1_fp_penalty`       | 0.1580             | 0.8666 | 0.2665   | 0.2665                      |
-| `precision_boosted`   | 0.1580             | 0.8666 | 0.2665   | 0.1508                      |
+### b. **Heurística de Dispersión**
 
-- Todas las métricas usaron el mismo `scale_pos_weight`.
-- `f1_fp_penalty` tuvo el mejor balance global.
+Detecta perfiles con:
+
+* Alta desviación estándar en montos (`client_std_amt`).
+* Alta variabilidad temporal (`client_std_time`).
+
+### c. **Variable Final**: `is_complex_profile`
+
+Marcada como `True` si cumple con al menos una de las dos condiciones anteriores.
 
 ---
 
-## 7. Conclusión
+## ⚖️ Peso y Umbral Diferenciado
 
-- Se redujo la proporción de falsos positivos en perfiles complejos de ~40% a ~24%.
-- Las penalizaciones personalizadas y umbrales diferenciados ayudaron a reducir alertas innecesarias.
-- Se validó que el cálculo manual de `scale_pos_weight` da el mismo resultado que `is_unbalance=True`, pero con mayor control.
+* **Pesos en entrenamiento**:
 
-**La función más efectiva fue `f1_fp_penalty` por su equilibrio entre recall y penalización.**
+  * Complejo: 1
+  * No complejo: 3
+* **Umbral de predicción**:
 
+  * Complejo: 0.7
+  * No complejo: 0.5
+
+---
+
+## ⚙️ Métricas de Evaluación Personalizadas
+
+1. **`tp_over_penalized_fp`**: Penaliza falsos positivos en perfiles complejos.
+2. **`f1_penalized`**: Penaliza F1 según cantidad de FP complejos.
+3. **`precision_boosted`**: Reduce precisión proporcionalmente al número de FP complejos.
+
+---
+
+## Resultados Observados
+
+* Se redujo la proporción de FP en perfiles complejos.
+* El modelo mantuvo una alta precisión general (> 0.99) con recall conservador.
+* El uso de heurísticas híbridas permitió capturar perfiles legítimos no convencionales que eran anteriormente mal clasificados como fraude.
+
+---
+
+## 🔗 Conclusión
+
+Este enfoque demuestra que combinar reglas de negocio basadas en comportamiento con estadísticas robustas (z-score, dispersión) permite construir un sistema de detección de fraude **más justo**, sin castigar a clientes de alto valor o con comportamiento atípico.
+
+El sistema es adaptable a otras industrias o segmentos donde los comportamientos extremos no deben confundirse con actividad fraudulenta.
+
+---
+
+## Requisitos Técnicos
+
+* Python 3.8+
+* Pandas, NumPy, LightGBM, Seaborn, Scikit-Learn, Scipy
+
+---
+
+
+## Referencias
+
+* [LightGBM Docs](https://lightgbm.readthedocs.io)
+* [Z-score Explanation](https://en.wikipedia.org/wiki/Standard_score)
+* Trabajo inspirado en estrategias reales de detección de fraude bancario (papers y datasets públicos)
