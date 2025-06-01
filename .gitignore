@@ -28,3 +28,15 @@ lab9/malimg_dataset.zip
 lab9/malimg_dataset
 lab9/malimg_dataset.E1N-_ZLC.zip.part
 
+
+# Ignorar archivo HTML generado
+proyecto/example_feature_engineering.html
+
+# Ignorar archivo comprimido
+proyecto/feature_engineering_work.rar
+
+# Ignorar exportación de métricas
+proyecto/metricas_comparativas.csv
+
+# Ignorar backup de requirements
+requirementes.txt.save
