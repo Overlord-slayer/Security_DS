@@ -40,3 +40,10 @@ proyecto/metricas_comparativas.csv
 
 # Ignorar backup de requirements
 requirementes.txt.save
+
+# Archivos específicos del proyecto a ignorar
+proyecto/model_*.pkl
+proyecto/threshold_*.npy
+
+# Ignorar el directorio LightGBM
+LightGBM/
