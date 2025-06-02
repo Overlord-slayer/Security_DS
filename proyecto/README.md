@@ -100,3 +100,20 @@ El sistema es adaptable a otras industrias o segmentos donde los comportamientos
 * [LightGBM Docs](https://lightgbm.readthedocs.io)
 * [Z-score Explanation](https://en.wikipedia.org/wiki/Standard_score)
 * Trabajo inspirado en estrategias reales de detección de fraude bancario (papers y datasets públicos)
+
+
+
+## 6. Instalación de dependencias y LightGBM con GPU
+
+```bash
+sudo apt-get install -y libboost-dev libboost-system-dev libboost-filesystem-dev
+sudo apt-get install -y cmake build-essential libopencl-dev ocl-icd-opencl-dev
+
+git clone --branch v3.3.5 --recursive https://github.com/microsoft/LightGBM.git
+cd LightGBM
+mkdir build
+cd build
+cmake -DUSE_GPU=1 ..
+make -j4
+cd ..
+pip install ./python-package
